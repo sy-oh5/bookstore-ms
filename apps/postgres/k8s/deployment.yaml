@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  labels:
+    app: postgres
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: postgres
+  template:
+    metadata:
+      labels:
+        app: postgres
+    spec:
+      containers:
+      - name: postgres
+        image: postgres:15
+        env:
+          - name: DB_HOST
+            value: "postgres-service.default.svc.cluster.local"
+          - name: POSTGRES_USER
+            value: "myuser"
+          - name: POSTGRES_PASSWORD
+            value: "root"
+          - name: POSTGRES_DB
+            value: "mydatabase"
+        ports:
+        - containerPort: 5432
+        volumeMounts:
+        - name: init-sql
+          mountPath: /docker-entrypoint-initdb.d
+      initContainers:
+      - name: init-sql-loader
+        image: busybox
+        command: ["/bin/sh", "-c"]
+        args:
+          - echo "CREATE SCHEMA IF NOT EXISTS test;
+                 " > /docker-entrypoint-initdb.d/init.sql
+        volumeMounts:
+        - name: init-sql
+          mountPath: /docker-entrypoint-initdb.d
+      volumes:
+      - name: init-sql
+        emptyDir: {}

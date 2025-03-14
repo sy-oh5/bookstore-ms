@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package user;
+
+service UserGrpcService {
+  rpc GetUsers (GetUsersRequest) returns (GetUsersResponse);
+}
+
+message GetUsersRequest {
+  repeated int32 id = 1; // 여러 사용자 ID를 전달할 수 있음
+}
+
+message GetUsersResponse {
+  repeated User users = 1;
+}
+
+message User {
+  int32 id = 1;
+  string email = 2;
+  string phone = 3;
+  string name = 4;
+}

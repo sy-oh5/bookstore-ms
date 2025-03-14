@@ -1,0 +1,65 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: renntal-service-deployment
+  labels:
+    app: rental-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: rental-service
+  template:
+    metadata:
+      labels:
+        app: rental-service
+    spec:
+      containers:
+      - name: rental-service
+        image: rental-service:latest
+        imagePullPolicy: Never
+        ports:
+        - containerPort: 3002   # HTTP
+        - containerPort: 3022   # gRPC
+        env:
+        - name: RENTAL_SERVICE_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: RENTAL_SERVICE_PORT
+        - name: RENTAL_GRPC_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: RENTAL_GRPC_PORT
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: POSTGRES_HOST
+        - name: POSTGRES_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: POSTGRES_PORT
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: POSTGRES_DB
+        - name: POSTGRES_SCHEMA
+          valueFrom:
+            configMapKeyRef:
+              name: my-app-config
+              key: POSTGRES_SCHEMA      
+

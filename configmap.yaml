@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-app-config
+data:
+  # 서비스 관련 설정
+  BOOK_SERVICE_PORT: "3001"
+  RENTAL_SERVICE_PORT: "3002"
+  USER_SERVICE_PORT: "3003"
+  BOOK_GRPC_PORT: "3011"
+  RENTAL_GRPC_PORT: "3022"
+  USER_GRPC_PORT: "3033"
+  API_GATEWAY_PORT: "3000"
+
+  # 서비스 URL (쿠버네티스 내부 DNS 사용)
+  BOOK_SERVICE_URL: "http://book-service.default.svc.cluster.local:3001"
+  RENTAL_SERVICE_URL: "http://rental-service.default.svc.cluster.local:3002"
+  USER_SERVICE_URL: "http://user-service.default.svc.cluster.local:3003"
+
+  # gRPC URL
+  BOOK_GRPC_URL: "book-service.default.svc.cluster.local:3011"
+  RENTAL_GRPC_URL: "rental-service.default.svc.cluster.local:3022"
+  USER_GRPC_URL: "user-service.default.svc.cluster.local:3033"
+
+  # DB 관련 설정 (PostgreSQL 예시)
+  POSTGRES_HOST: "postgres-service.default.svc.cluster.local"
+  POSTGRES_PORT: "5432"
+  POSTGRES_USER: "myuser"
+  POSTGRES_PASSWORD: "root"
+  POSTGRES_DB: "mydatabase"
+  POSTGRES_SCHEMA: "test"

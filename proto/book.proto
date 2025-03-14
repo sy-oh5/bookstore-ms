@@ -1,0 +1,51 @@
+syntax = "proto3";
+
+package book;
+
+service BookGrpcService {
+  rpc GetBookNames (BookIdsRequest) returns (BookNamesResponse);
+  rpc GetBooks (GetBookRequest) returns (GetBookResponse);
+}
+
+message GetBook {
+  int32 id = 1;
+  string title = 2;
+  string author = 3;
+  BookCategory category = 4;
+}
+
+message GetBookResponse {
+  repeated GetBook books = 1;
+}
+
+message GetBookRequest {
+  string title = 1;
+  string author = 2;
+  BookCategory category = 3;
+}
+
+enum BookCategory {
+  BOOK_CATEGORY_UNKNOWN = 0;
+  FICTION = 1;
+  NON_FICTION = 2;
+  TECHNOLOGY = 3;
+  SCIENCE = 4;
+  HISTORY = 5;
+  SELF_HELP = 6;
+  BUSINESS = 7;
+  EDUCATION = 8;
+  OTHER = 9;
+}
+
+message BookIdsRequest {
+  repeated int32 bookIds = 1;
+}
+
+message BookNamesResponse {
+  repeated Book books = 1;
+}
+
+message Book {
+  int32 bookId = 1;
+  string bookName = 2;
+}
