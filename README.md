@@ -9,6 +9,8 @@
 1. Minikube Docker 환경 활성화:
 
 ```bash
+brew install minikube # mac os
+minikube start
 eval $(minikube docker-env)
 ```
 
