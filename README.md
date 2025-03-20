@@ -38,3 +38,6 @@ npm run start:all
 ```
 
 + Swagger UI 확인: http://localhost:3000/api
+
+<img width="1016" alt="image" src="https://github.com/user-attachments/assets/830cf4e7-5e6c-4b92-8cbe-dde0136a56a9" />
+
