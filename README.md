@@ -28,7 +28,7 @@ docker build -t {service-name}:latest -f apps/{service-directory}/Dockerfile .
 3. Kubernetes 리소스 배포:
 ```bash
 kubectl apply -f configmap.yaml #환경 변수
-kubectl apply -f postgres/k8s/  #DB
+kubectl apply -f apps/postgres/k8s/  #DB
 kubectl apply -f apps/{service-directory}/k8s/  #services
 ```
 
