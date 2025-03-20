@@ -29,7 +29,7 @@ kubectl apply -f apps/{service-directory}/k8s/  #services
 ```bash
 kubectl port-forward svc/api-gateway 3000:3000
 ```
-## 로컬 개발
+## 로컬 배포
 - **전체 서비스 실행 (DB는 별도로 연결 필요 .env 파일내에서 endpoint 수정)**  
 ```bash
 npm run start:all
