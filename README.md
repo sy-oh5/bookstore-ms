@@ -5,14 +5,6 @@
 - 서비스 간 gRPC 통신 및 API Gateway를 통한 REST API 제공
 - 로컬 Minikube 환경에서 Docker와 Kubernetes로 배포
 
-## 로컬 개발
-- **전체 서비스 실행:**  
-```bash
-npm run start:all
-```
-
-+ Swagger UI 확인: http://localhost:3000/api
-
 # Docker & Kubernetes 배포
 1. Minikube Docker 환경 활성화:
 
@@ -37,3 +29,10 @@ kubectl apply -f apps/{service-directory}/k8s/  #services
 ```bash
 kubectl port-forward svc/api-gateway 3000:3000
 ```
+## 로컬 개발
+- **전체 서비스 실행 (DB는 별도로 연결 필요 .env 파일내에서 endpoint 수정)**  
+```bash
+npm run start:all
+```
+
++ Swagger UI 확인: http://localhost:3000/api
